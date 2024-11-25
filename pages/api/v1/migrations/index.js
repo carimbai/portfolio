@@ -13,6 +13,9 @@ export default async function migrations(request, response) {
   let dbClient;
   try {
     dbClient = await database.getNewClient();
+    if (!dbClient) {
+      throw new Error("Falha ao conectar no banco de dados");
+    }
 
     const defaltMigrationsOptions = {
       dbClient: dbClient,
@@ -43,6 +46,8 @@ export default async function migrations(request, response) {
     console.log(error);
     throw error;
   } finally {
-    await dbClient.end();
+    if (dbClient) {
+      await dbClient.end();
+    }
   }
 }
