@@ -7,7 +7,7 @@ const defaltMigrationsOptions = {
   dryRun: true,
   dir: resolve("infra", "migrations"),
   direction: "up",
-  log: () => {}, 
+  log: () => {},
   migrationsTable: "pgmigrations",
 };
 
